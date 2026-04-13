@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CipherDrop | Secure P2P Share</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Cybersecurity Project</p>
+        <h1>CipherDrop</h1>
+        <p class="hero-text">
+          Peer-to-peer file sharing with password-gated sessions, AES-GCM encryption,
+          SHA-256 integrity verification, resumable transfers, QR pairing, and media preview.
+        </p>
+      </div>
+      <div class="hero-badge">
+        <span class="badge-label">Security Stack</span>
+        <strong>AES-GCM + SHA-256</strong>
+        <span class="badge-note">Files travel directly between peers.</span>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel session-panel">
+        <div class="panel-head">
+          <div>
+            <p class="section-kicker">Session Control</p>
+            <h2>Start or join a room</h2>
+          </div>
+          <span id="sessionStatus" class="status-pill status-idle">Offline</span>
+        </div>
+
+        <div class="session-form">
+          <label>
+            Display name
+            <input id="displayName" type="text" maxlength="32" placeholder="Analyst A">
+          </label>
+          <label>
+            Room ID
+            <input id="roomId" type="text" placeholder="cyber-lab-01">
+          </label>
+          <label>
+            Session password
+            <input id="password" type="password" placeholder="Required for entry">
+          </label>
+        </div>
+
+        <div class="session-actions">
+          <button id="joinBtn" class="primary-btn">Connect Session</button>
+          <button id="copyInviteBtn" class="secondary-btn" disabled>Copy Invite</button>
+        </div>
+
+        <div class="session-grid">
+          <div class="invite-card">
+            <div class="invite-head">
+              <h3>QR connect</h3>
+              <span>Trusted devices only</span>
+            </div>
+            <div id="qrWrapper" class="qr-wrapper empty">
+              <p>Join a session to generate a QR invite.</p>
+            </div>
+            <p id="inviteLink" class="invite-link">Invite link will appear here.</p>
+          </div>
+
+          <div class="peers-card">
+            <div class="invite-head">
+              <h3>Connected peers</h3>
+              <span id="peerCount">0 online</span>
+            </div>
+            <div id="peerList" class="peer-list">
+              <p class="placeholder">No peers connected yet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel transfer-panel">
+        <div class="panel-head">
+          <div>
+            <p class="section-kicker">Transfer Hub</p>
+            <h2>Send multiple files</h2>
+          </div>
+          <span id="cryptoStatus" class="mini-status">Waiting for room key</span>
+        </div>
+
+        <div class="transfer-toolbar">
+          <label class="file-picker">
+            <input id="fileInput" type="file" multiple>
+            <span>Select files</span>
+          </label>
+          <button id="sendBtn" class="primary-btn" disabled>Send to peers</button>
+        </div>
+
+        <div class="recipient-card">
+          <div class="invite-head">
+            <h3>Send targets</h3>
+            <span id="recipientSummary">No peer selected</span>
+          </div>
+          <div id="recipientList" class="recipient-list">
+            <p class="placeholder">Connect to one or more peers to choose recipients.</p>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="workspace-card">
+            <div class="invite-head">
+              <h3>Preview queue</h3>
+              <span>Files Selected</span>
+            </div>
+            <div id="previewGrid" class="preview-grid">
+              <p class="placeholder">Choose one or more files to preview them here.</p>
+            </div>
+          </div>
+
+          <div class="workspace-card">
+            <div class="invite-head">
+              <h3>Live transfers</h3>
+              <span id="transferSummary">No active transfers</span>
+            </div>
+            <div id="transferList" class="transfer-list">
+              <p class="placeholder">Transfers will appear here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="workspace-card received-card">
+          <div class="invite-head">
+            <h3>Received files</h3>
+            <span>Ready to download</span>
+          </div>
+          <div id="receivedList" class="received-list">
+            <p class="placeholder">Verified received files will appear here.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="panel-head">
+          <div>
+            <p class="section-kicker">Audit Trail</p>
+            <h2>Transfer history</h2>
+          </div>
+          <button id="clearHistoryBtn" class="secondary-btn subtle-btn">Clear History</button>
+        </div>
+
+        <div id="historyList" class="history-list">
+          <p class="placeholder">No transfer history yet.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/node-forge@1.3.1/dist/forge.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
