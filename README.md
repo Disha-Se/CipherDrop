@@ -10,7 +10,7 @@
 
 | Session control | QR connect + live peers | Transfer in progress + audit trail |
 |---|---|---|
-| ![Session](https://github.com/Disha-Se/CipherDrop/blob/main/Screenshot%202026-04-12%20222746.png) | ![QR](https://github.com/Disha-Se/CipherDrop/blob/main/Screenshot%202026-04-12%20223016.png) | ![Transfer](./screenshots/transfer.png) |
+| ![Session](https://github.com/Disha-Se/CipherDrop/blob/main/Screenshot%202026-04-12%20222746.png) | ![QR](https://github.com/Disha-Se/CipherDrop/blob/main/Screenshot%202026-04-12%20223016.png) | ![Transfer](https://github.com/Disha-Se/CipherDrop/blob/main/Screenshot%202026-04-12%20223046.png) |
 
 ---
 
